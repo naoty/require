@@ -3,7 +3,7 @@ import 'package:require/require.dart';
 class ISBN {
   final String _value;
 
-  ISBN({required String value}) : _value = value {
+  ISBN(String value) : _value = value {
     require(_value)
         .startsWith('ISBN978-4-')
         .hasLength(22)
@@ -15,9 +15,9 @@ class ISBN {
 }
 
 void main() {
-  final validISBN = ISBN(value: 'ISBN978-4-7741-9613-5');
+  final validISBN = ISBN('ISBN978-4-7741-9613-5');
   print(validISBN);
 
-  final invalidISBN = ISBN(value: 'ISBN978-4-abcd-efgh-i');
+  final invalidISBN = ISBN('ISBN978-4-abcd-efgh-i');
   print(invalidISBN);
 }
