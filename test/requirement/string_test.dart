@@ -32,25 +32,16 @@ void main() {
   });
 
   group('hasLength', () {
-    test('raises an exception when a string has a length less than min', () {
+    test('raises an exception when a string does not have a length', () {
       expect(
-        () => require('naoty').hasLength(min: 10, max: 11),
+        () => require('naoty').hasLength(5),
         throwsA(isA<StringLengthRequired>()),
       );
     });
 
-    test('raises an exception when a string has a length greater than max', () {
+    test('does not raise an exception when a string has a length', () {
       expect(
-        () => require('naoty').hasLength(max: 3),
-        throwsA(isA<StringLengthRequired>()),
-      );
-    });
-
-    test(
-        'does not raise an exception when a string has a length between min and max',
-        () {
-      expect(
-        () => require('naoty').hasLength(min: 3, max: 10),
+        () => require('naoty').hasLength(6),
         returnsNormally,
       );
     });

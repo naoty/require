@@ -6,7 +6,7 @@ class ISBN {
   ISBN({required String value}) : _value = value {
     require(_value)
         .startsWith('ISBN978-4-')
-        .hasLength(min: 21, max: 22)
+        .hasLength(22)
         .matches(r'^ISBN[0-9\-]+$');
   }
 
