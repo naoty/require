@@ -5,7 +5,6 @@ extension StringRequirement on Subject<String> {
     if (value.isNotEmpty) {
       throw EmptyStringRequired(value: value);
     }
-
     return this;
   }
 
@@ -13,7 +12,6 @@ extension StringRequirement on Subject<String> {
     if (value.isEmpty) {
       throw NotEmptyStringRequired(value: value);
     }
-
     return this;
   }
 
@@ -21,7 +19,20 @@ extension StringRequirement on Subject<String> {
     if (value.length < min || max < value.length) {
       throw StringLengthRequired(value: value, min: min, max: max);
     }
+    return this;
+  }
 
+  Subject<String> matches(Pattern pattern) {
+    if (pattern is RegExp) {
+      if (pattern.matchAsPrefix(value) == null) {
+        throw StringMatchRequired(value: value, pattern: pattern);
+      }
+    } else if (pattern is String) {
+      final regexp = RegExp(pattern);
+      if (regexp.matchAsPrefix(value) == null) {
+        throw StringMatchRequired(value: value, pattern: pattern);
+      }
+    }
     return this;
   }
 }
@@ -58,4 +69,16 @@ class StringLengthRequired implements Exception {
   @override
   String toString() =>
       "'$_value' is required to have length between $_min and $_max";
+}
+
+class StringMatchRequired implements Exception {
+  final String _value;
+  final Pattern _pattern;
+
+  StringMatchRequired({required String value, required Pattern pattern})
+      : _value = value,
+        _pattern = pattern;
+
+  @override
+  String toString() => "'$_value' is required to match '$_pattern'";
 }

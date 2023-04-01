@@ -5,12 +5,12 @@ class Name {
   final String last;
 
   Name({required this.first, required this.last}) {
-    require(first).hasLength(min: 1, max: 10);
-    require(last).hasLength(min: 1, max: 10);
+    require(first).hasLength(min: 1, max: 10).matches(r'^[a-zA-Z]+$');
+    require(last).hasLength(min: 1, max: 10).matches(r'^[a-zA-Z]+$');
   }
 }
 
 void main() {
-  final name = Name(first: '', last: 'naoty');
+  final name = Name(first: 'nao to', last: 'kaneko');
   print(name);
 }
