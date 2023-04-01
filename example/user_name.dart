@@ -6,12 +6,18 @@ class UserName {
   final String? middle;
 
   UserName({required this.first, required this.last, this.middle}) {
-    require(first, label: 'first').isNotEmpty().matches(r'^[a-zA-Z]+$');
-    require(last, label: 'last').isNotEmpty().matches(r'^[a-zA-Z]+$');
+    require(first, label: 'first')
+        .hasLengthGreaterThan(0)
+        .hasLengthLessThan(20)
+        .matches(r'^[a-zA-Z]+$');
+    require(last, label: 'last')
+        .hasLengthGreaterThan(0)
+        .hasLengthLessThan(20)
+        .matches(r'^[a-zA-Z]+$');
   }
 }
 
 void main() {
-  final userName = UserName(first: 'John', last: '12');
+  final userName = UserName(first: 'John', last: '1111111111111111111111111');
   print(userName);
 }
