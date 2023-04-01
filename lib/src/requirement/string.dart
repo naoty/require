@@ -35,6 +35,20 @@ extension StringRequirement on Subject<String> {
     }
     return this;
   }
+
+  Subject<String> startsWith(String prefix) {
+    if (!value.startsWith(prefix)) {
+      throw StringPrefixRequired(value: value, prefix: prefix);
+    }
+    return this;
+  }
+
+  Subject<String> endsWith(String suffix) {
+    if (!value.endsWith(suffix)) {
+      throw StringSuffixRequired(value: value, suffix: suffix);
+    }
+    return this;
+  }
 }
 
 class EmptyStringRequired implements Exception {
@@ -81,4 +95,28 @@ class StringMatchRequired implements Exception {
 
   @override
   String toString() => "'$_value' is required to match '$_pattern'";
+}
+
+class StringPrefixRequired implements Exception {
+  final String _value;
+  final String _prefix;
+
+  StringPrefixRequired({required String value, required String prefix})
+      : _value = value,
+        _prefix = prefix;
+
+  @override
+  String toString() => "'$_value' is required to start with '$_prefix'";
+}
+
+class StringSuffixRequired implements Exception {
+  final String _value;
+  final String _suffix;
+
+  StringSuffixRequired({required String value, required String suffix})
+      : _value = value,
+        _suffix = suffix;
+
+  @override
+  String toString() => "'$_value' is required to end with '$_suffix'";
 }

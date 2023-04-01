@@ -71,4 +71,36 @@ void main() {
       );
     });
   });
+
+  group('startsWith', () {
+    test('raises an exception when a string does not start with a prefix', () {
+      expect(
+        () => require('naoty').startsWith('ty'),
+        throwsA(isA<StringPrefixRequired>()),
+      );
+    });
+
+    test('does not raise an exception when a string starts with a prefix', () {
+      expect(
+        () => require('naoty').startsWith('nao'),
+        returnsNormally,
+      );
+    });
+  });
+
+  group('endsWith', () {
+    test('raises an exception when a string does not end with a suffix', () {
+      expect(
+        () => require('naoty').endsWith('nao'),
+        throwsA(isA<StringSuffixRequired>()),
+      );
+    });
+
+    test('does not raise an exception when a string ends with a suffix', () {
+      expect(
+        () => require('naoty').endsWith('ty'),
+        returnsNormally,
+      );
+    });
+  });
 }
