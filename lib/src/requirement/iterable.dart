@@ -25,30 +25,59 @@ extension IterableRequirement on Subject<Iterable> {
 
 class EmptyIterableRequired implements Exception {
   final Iterable _value;
+  final String? _label;
 
-  EmptyIterableRequired({required Iterable value}) : _value = value;
+  EmptyIterableRequired({required Iterable value, String? label})
+      : _value = value,
+        _label = label;
 
   @override
-  String toString() => "$_value is required to be empty";
+  String toString() {
+    if (_label != null) {
+      return "$_label($_value) is required to be empty";
+    } else {
+      return "$_value is required to be empty";
+    }
+  }
 }
 
 class NotEmptyIterableRequired implements Exception {
   final Iterable _value;
+  final String? _label;
 
-  NotEmptyIterableRequired({required Iterable value}) : _value = value;
+  NotEmptyIterableRequired({required Iterable value, String? label})
+      : _value = value,
+        _label = label;
 
   @override
-  String toString() => "$_value is required to be not empty";
+  String toString() {
+    if (_label != null) {
+      return "$_label($_value) is required to be not empty";
+    } else {
+      return "$_value is required to be not empty";
+    }
+  }
 }
 
 class IterableLengthRequired implements Exception {
   final Iterable _value;
   final int _length;
+  final String? _label;
 
-  IterableLengthRequired({required Iterable value, required int length})
-      : _value = value,
-        _length = length;
+  IterableLengthRequired({
+    required Iterable value,
+    required int length,
+    String? label,
+  })  : _value = value,
+        _length = length,
+        _label = label;
 
   @override
-  String toString() => "$_value is required to have length $_length";
+  String toString() {
+    if (_label != null) {
+      return "$_label($_value) is required to have length $_length";
+    } else {
+      return "$_value is required to have length $_length";
+    }
+  }
 }
