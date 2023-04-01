@@ -4,6 +4,8 @@ A dart package to support design by contract in declarative style
 ## Usage
 
 ```dart
+import 'package:require/require.dart';
+
 class Customer {
   final String name;
   final int age;
