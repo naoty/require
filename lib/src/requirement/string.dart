@@ -16,6 +16,14 @@ extension StringRequirement on Subject<String> {
 
     return this;
   }
+
+  Subject<String> hasLength({int min = 0, required int max}) {
+    if (value.length < min || max < value.length) {
+      throw StringLengthRequired(value: value, min: min, max: max);
+    }
+
+    return this;
+  }
 }
 
 class EmptyStringRequired implements Exception {
@@ -34,4 +42,20 @@ class NotEmptyStringRequired implements Exception {
 
   @override
   String toString() => "'$_value' is required not to be empty";
+}
+
+class StringLengthRequired implements Exception {
+  final String _value;
+  final int _min;
+  final int _max;
+
+  StringLengthRequired(
+      {required String value, required int min, required int max})
+      : _value = value,
+        _min = min,
+        _max = max;
+
+  @override
+  String toString() =>
+      "'$_value' is required to have length between $_min and $_max";
 }
