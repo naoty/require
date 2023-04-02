@@ -30,6 +30,17 @@ void main() {
     });
   });
 
+  group('ifNotNull', () {
+    test('returns null when a string is null', () {
+      final String? nullString = null;
+      expect(require(nullString).ifNotNull(), isNull);
+    });
+
+    test('returns a subject when a string is not null', () {
+      expect(require('naoty').ifNotNull(), isA<Subject<String>>());
+    });
+  });
+
   group('isEmpty', () {
     test('raises an exception when a string is not empty', () {
       expect(

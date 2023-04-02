@@ -2,12 +2,17 @@ import 'package:require/require.dart';
 
 class UserName {
   final String first;
-  final String last;
   final String? middle;
+  final String last;
 
-  UserName({required this.first, required this.last, this.middle}) {
+  UserName({required this.first, this.middle, required this.last}) {
     require(first, label: 'first')
         .hasLengthGreaterThan(0)
+        .hasLengthLessThan(20)
+        .matches(r'^[a-zA-Z]+$');
+    require(middle, label: 'middle')
+        .ifNotNull()
+        ?.hasLengthGreaterThan(0)
         .hasLengthLessThan(20)
         .matches(r'^[a-zA-Z]+$');
     require(last, label: 'last')
@@ -18,6 +23,6 @@ class UserName {
 }
 
 void main() {
-  final userName = UserName(first: 'John', last: '1111111111111111111111111');
+  final userName = UserName(first: 'Naoto', last: 'Kaneko');
   print(userName);
 }

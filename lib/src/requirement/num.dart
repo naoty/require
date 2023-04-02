@@ -14,6 +14,13 @@ extension NullableNumRequirement on Subject<num?> {
     }
     return Subject(value: value!, label: label);
   }
+
+  Subject<num>? ifNotNull() {
+    if (value == null) {
+      return null;
+    }
+    return Subject(value: value!, label: label);
+  }
 }
 
 extension NumRequirement on Subject<num> {

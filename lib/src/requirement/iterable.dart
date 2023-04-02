@@ -14,6 +14,13 @@ extension NullableIterableRequirement on Subject<Iterable?> {
     }
     return Subject(value: value!, label: label);
   }
+
+  Subject<Iterable>? ifNotNull() {
+    if (value == null) {
+      return null;
+    }
+    return Subject(value: value!, label: label);
+  }
 }
 
 extension IterableRequirement on Subject<Iterable> {

@@ -14,6 +14,13 @@ extension NullableStringRequirement on Subject<String?> {
     }
     return Subject(value: value!, label: label);
   }
+
+  Subject<String>? ifNotNull() {
+    if (value == null) {
+      return null;
+    }
+    return Subject(value: value!, label: label);
+  }
 }
 
 extension StringRequirement on Subject<String> {

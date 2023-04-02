@@ -30,6 +30,17 @@ void main() {
     });
   });
 
+  group('ifNotNull', () {
+    test('returns null when a num is null', () {
+      final num? nullNum = null;
+      expect(require(nullNum).ifNotNull(), isNull);
+    });
+
+    test('returns a subject when a num is not null', () {
+      expect(require(1).ifNotNull(), isA<Subject<num>>());
+    });
+  });
+
   group('equals', () {
     test(
         'raises an exception when the value is not equal to the required value',

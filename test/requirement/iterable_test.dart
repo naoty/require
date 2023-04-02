@@ -30,6 +30,17 @@ void main() {
     });
   });
 
+  group('ifNotNull', () {
+    test('returns null when an iterable is null', () {
+      final Iterable? nullIterable = null;
+      expect(require(nullIterable).ifNotNull(), isNull);
+    });
+
+    test('returns a subject when an iterable is not null', () {
+      expect(require([1]).ifNotNull(), isA<Subject<Iterable>>());
+    });
+  });
+
   group('isEmpty', () {
     test('raises an exception when the value is not empty', () {
       expect(
