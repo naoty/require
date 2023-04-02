@@ -2,6 +2,34 @@ import 'package:require/require.dart';
 import 'package:test/test.dart';
 
 void main() {
+  group('isNull', () {
+    test('raises an exception when a num is not null', () {
+      expect(
+        () => require(1).isNull(),
+        throwsA(isA<NullNumRequired>()),
+      );
+    });
+
+    test('does not raise an exception when a num is null', () {
+      final num? nullNum = null;
+      expect(() => require(nullNum).isNull(), returnsNormally);
+    });
+  });
+
+  group('isNotNull', () {
+    test('raises an exception when a num is null', () {
+      final num? nullNum = null;
+      expect(
+        () => require(nullNum).isNotNull(),
+        throwsA(isA<NonNullNumRequired>()),
+      );
+    });
+
+    test('does not raise an exception when a num is not null', () {
+      expect(() => require(1).isNotNull(), returnsNormally);
+    });
+  });
+
   group('equals', () {
     test(
         'raises an exception when the value is not equal to the required value',
