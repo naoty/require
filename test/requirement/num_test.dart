@@ -41,25 +41,6 @@ void main() {
     });
   });
 
-  group('equals', () {
-    test(
-        'raises an exception when the value is not equal to the required value',
-        () {
-      expect(
-        () => require(1).equals(2),
-        throwsA(isA<NumEqualityRequired>()),
-      );
-    });
-
-    test('does not raise an exception when the value is equal to the required',
-        () {
-      expect(
-        () => require(1).equals(1),
-        returnsNormally,
-      );
-    });
-  });
-
   group('isGreaterThan', () {
     test('raises an exception when the value is not greater than the required',
         () {

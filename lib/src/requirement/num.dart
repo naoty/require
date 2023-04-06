@@ -24,17 +24,6 @@ extension NullableNumRequirement on Subject<num?> {
 }
 
 extension NumRequirement on Subject<num> {
-  Subject<num> equals(num value) {
-    if (this.value != value) {
-      throw NumEqualityRequired(
-        value: this.value,
-        required: value,
-        label: label,
-      );
-    }
-    return this;
-  }
-
   Subject<num> isGreaterThan(num value) {
     if (this.value <= value) {
       throw NumGreaterThanRequired(
@@ -77,29 +66,6 @@ extension NumRequirement on Subject<num> {
       );
     }
     return this;
-  }
-}
-
-class NumEqualityRequired implements Exception {
-  final num _value;
-  final num _required;
-  final String? _label;
-
-  NumEqualityRequired({
-    required num value,
-    required num required,
-    String? label,
-  })  : _value = value,
-        _required = required,
-        _label = label;
-
-  @override
-  String toString() {
-    if (_label != null) {
-      return "$_label($_value) is required to be equal to $_required";
-    } else {
-      return "$_value is required to be equal to $_required";
-    }
   }
 }
 
