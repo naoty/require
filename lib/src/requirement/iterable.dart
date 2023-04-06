@@ -23,17 +23,17 @@ extension NullableIterableRequirement on Subject<Iterable?> {
   }
 }
 
-extension IterableRequirement on Subject<Iterable> {
+extension IterableRequirement<T> on Subject<Iterable<T>> {
   Subject<Iterable> isEmpty() {
     if (value.isNotEmpty) {
-      throw EmptyIterableRequired(value: value);
+      throw EmptyIterableRequired(value: value, label: label);
     }
     return this;
   }
 
   Subject<Iterable> isNotEmpty() {
     if (value.isEmpty) {
-      throw NotEmptyIterableRequired(value: value);
+      throw NotEmptyIterableRequired(value: value, label: label);
     }
     return this;
   }
@@ -41,6 +41,17 @@ extension IterableRequirement on Subject<Iterable> {
   Subject<Iterable> hasLength(int length) {
     if (value.length != length) {
       throw IterableLengthRequired(value: value, length: length);
+    }
+    return this;
+  }
+
+  Subject<Iterable> contains(T element) {
+    if (!value.contains(element)) {
+      throw IterableContainingRequired(
+        value: value,
+        element: element,
+        label: label,
+      );
     }
     return this;
   }
@@ -134,6 +145,30 @@ class IterableLengthRequired implements Exception {
       return "$_label($_value) is required to have length $_length";
     } else {
       return "$_value is required to have length $_length";
+    }
+  }
+}
+
+class IterableContainingRequired<T> implements Exception {
+  final Iterable _value;
+  final T _element;
+  final String? _label;
+
+  IterableContainingRequired({
+    required Iterable value,
+    required T element,
+    String? label,
+  })  : _value = value,
+        _element = element,
+        _label = label;
+
+  @override
+  String toString() {
+    final elementString = T is String ? "'$_element'" : "$_element";
+    if (_label != null) {
+      return "$_label($_value) is required to contain $elementString";
+    } else {
+      return "$_value is required to contain $elementString";
     }
   }
 }
