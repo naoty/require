@@ -1,28 +1,5 @@
 import 'package:require/require.dart';
 
-extension NullableIterableRequirement on Subject<Iterable?> {
-  Subject<Iterable?> isNull() {
-    if (value != null) {
-      throw NullIterableRequired(value: value);
-    }
-    return this;
-  }
-
-  Subject<Iterable> isNotNull() {
-    if (value == null) {
-      throw NonNullIterableRequired();
-    }
-    return Subject(value: value!, label: label);
-  }
-
-  Subject<Iterable>? ifNotNull() {
-    if (value == null) {
-      return null;
-    }
-    return Subject(value: value!, label: label);
-  }
-}
-
 extension IterableRequirement<T> on Subject<Iterable<T>> {
   Subject<Iterable> isEmpty() {
     if (value.isNotEmpty) {
@@ -54,39 +31,6 @@ extension IterableRequirement<T> on Subject<Iterable<T>> {
       );
     }
     return this;
-  }
-}
-
-class NullIterableRequired implements Exception {
-  final Iterable? _value;
-  final String? _label;
-
-  NullIterableRequired({required Iterable? value, String? label})
-      : _value = value,
-        _label = label;
-
-  @override
-  String toString() {
-    if (_label != null) {
-      return "$_label($_value) is required to be null";
-    } else {
-      return "$_value is required to be null";
-    }
-  }
-}
-
-class NonNullIterableRequired implements Exception {
-  final String? _label;
-
-  NonNullIterableRequired({String? label}) : _label = label;
-
-  @override
-  String toString() {
-    if (_label != null) {
-      return "$_label is required to be not null";
-    } else {
-      return "Iterable is required to be not null";
-    }
   }
 }
 

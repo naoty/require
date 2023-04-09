@@ -2,45 +2,6 @@ import 'package:require/require.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('isNull', () {
-    test('raises an exception when a string is not null', () {
-      expect(
-        () => require('naoty').isNull(),
-        throwsA(isA<NullStringRequired>()),
-      );
-    });
-
-    test('does not raise an exception when a string is null', () {
-      final String? nullString = null;
-      expect(() => require(nullString).isNull(), returnsNormally);
-    });
-  });
-
-  group('isNotNull', () {
-    test('raises an exception when a string is null', () {
-      final String? nullString = null;
-      expect(
-        () => require(nullString).isNotNull(),
-        throwsA(isA<NonNullStringRequired>()),
-      );
-    });
-
-    test('does not raise an exception when a string is not null', () {
-      expect(() => require('naoty').isNotNull(), returnsNormally);
-    });
-  });
-
-  group('ifNotNull', () {
-    test('returns null when a string is null', () {
-      final String? nullString = null;
-      expect(require(nullString).ifNotNull(), isNull);
-    });
-
-    test('returns a subject when a string is not null', () {
-      expect(require('naoty').ifNotNull(), isA<Subject<String>>());
-    });
-  });
-
   group('isEmpty', () {
     test('raises an exception when a string is not empty', () {
       expect(

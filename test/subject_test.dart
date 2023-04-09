@@ -39,4 +39,40 @@ void main() {
       );
     });
   });
+
+  group('isNull', () {
+    test('throws an exception if the value is not null', () {
+      expect(
+        () => Subject(value: 1).isNull(),
+        throwsA(isA<NullRequired>()),
+      );
+    });
+
+    test('does not throw an exception if the value is null', () {
+      expect(() => Subject(value: null).isNull(), returnsNormally);
+    });
+  });
+
+  group('isNotNull', () {
+    test('throws an exception if the value is null', () {
+      expect(
+        () => Subject(value: null).isNotNull(),
+        throwsA(isA<NonNullRequired>()),
+      );
+    });
+
+    test('does not throw an exception if the value is not null', () {
+      expect(() => Subject(value: 1).isNotNull(), returnsNormally);
+    });
+  });
+
+  group('ifNotNull', () {
+    test('returns null if the value is null', () {
+      expect(Subject(value: null).ifNotNull(), isNull);
+    });
+
+    test('returns a Subject if the value is not null', () {
+      expect(Subject(value: 1).ifNotNull(), isA<Subject>());
+    });
+  });
 }

@@ -1,28 +1,5 @@
 import 'package:require/src/subject.dart';
 
-extension NullableStringRequirement on Subject<String?> {
-  Subject<String?> isNull() {
-    if (value != null) {
-      throw NullStringRequired(value: value, label: label);
-    }
-    return this;
-  }
-
-  Subject<String> isNotNull() {
-    if (value == null) {
-      throw NonNullStringRequired(label: label);
-    }
-    return Subject(value: value!, label: label);
-  }
-
-  Subject<String>? ifNotNull() {
-    if (value == null) {
-      return null;
-    }
-    return Subject(value: value!, label: label);
-  }
-}
-
 extension StringRequirement on Subject<String> {
   Subject<String> isEmpty() {
     if (value.isNotEmpty) {
@@ -115,39 +92,6 @@ extension StringRequirement on Subject<String> {
       throw StringSuffixRequired(value: value, suffix: suffix, label: label);
     }
     return this;
-  }
-}
-
-class NullStringRequired implements Exception {
-  final String? _value;
-  final String? _label;
-
-  NullStringRequired({required String? value, String? label})
-      : _value = value,
-        _label = label;
-
-  @override
-  String toString() {
-    if (_label != null) {
-      return "$_label('$_value') is required to be null";
-    } else {
-      return "'$_value' is required to be null";
-    }
-  }
-}
-
-class NonNullStringRequired implements Exception {
-  final String? _label;
-
-  NonNullStringRequired({String? label}) : _label = label;
-
-  @override
-  String toString() {
-    if (_label != null) {
-      return "$_label(null) is required to be non-null";
-    } else {
-      return "null is required to be non-null";
-    }
   }
 }
 

@@ -1,28 +1,5 @@
 import 'package:require/require.dart';
 
-extension NullableNumRequirement on Subject<num?> {
-  Subject<num?> isNull() {
-    if (value != null) {
-      throw NullNumRequired(value: value, label: label);
-    }
-    return this;
-  }
-
-  Subject<num> isNotNull() {
-    if (value == null) {
-      throw NonNullNumRequired(label: label);
-    }
-    return Subject(value: value!, label: label);
-  }
-
-  Subject<num>? ifNotNull() {
-    if (value == null) {
-      return null;
-    }
-    return Subject(value: value!, label: label);
-  }
-}
-
 extension NumRequirement on Subject<num> {
   Subject<num> isGreaterThan(num value) {
     if (this.value <= value) {
@@ -66,39 +43,6 @@ extension NumRequirement on Subject<num> {
       );
     }
     return this;
-  }
-}
-
-class NullNumRequired implements Exception {
-  final num? _value;
-  final String? _label;
-
-  NullNumRequired({required num? value, String? label})
-      : _value = value,
-        _label = label;
-
-  @override
-  String toString() {
-    if (_label != null) {
-      return "$_label('$_value') is required to be null";
-    } else {
-      return "'$_value' is required to be null";
-    }
-  }
-}
-
-class NonNullNumRequired implements Exception {
-  final String? _label;
-
-  NonNullNumRequired({String? label}) : _label = label;
-
-  @override
-  String toString() {
-    if (_label != null) {
-      return "$_label(null) is required to be non-null";
-    } else {
-      return "null is required to be non-null";
-    }
   }
 }
 
