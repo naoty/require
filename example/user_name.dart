@@ -7,16 +7,15 @@ class UserName {
 
   UserName({required this.first, this.middle, required this.last}) {
     require(first, label: 'first')
-        .hasLengthGreaterThan(0)
+        .isNotEmpty()
         .hasLengthLessThan(20)
         .matches(r'^[a-zA-Z]+$');
-    require(middle, label: 'middle')
-        .ifNotNull()
-        ?.hasLengthGreaterThan(0)
+    requireIfNotNull(middle)
+        ?.isNotEmpty()
         .hasLengthLessThan(20)
         .matches(r'^[a-zA-Z]+$');
     require(last, label: 'last')
-        .hasLengthGreaterThan(0)
+        .isNotEmpty()
         .hasLengthLessThan(20)
         .matches(r'^[a-zA-Z]+$');
   }

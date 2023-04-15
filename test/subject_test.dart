@@ -65,14 +65,4 @@ void main() {
       expect(() => Subject(value: 1).isNotNull(), returnsNormally);
     });
   });
-
-  group('ifNotNull', () {
-    test('returns null if the value is null', () {
-      expect(Subject(value: null).ifNotNull(), isNull);
-    });
-
-    test('returns a Subject if the value is not null', () {
-      expect(Subject(value: 1).ifNotNull(), isA<Subject>());
-    });
-  });
 }

@@ -33,13 +33,6 @@ extension NullableObjectRequirement<T> on Subject<T?> {
     }
     return Subject(value: value as T, label: label);
   }
-
-  Subject<T>? ifNotNull() {
-    if (value == null) {
-      return null;
-    }
-    return Subject(value: value as T, label: label);
-  }
 }
 
 class EqualityRequired<T> implements Exception {
