@@ -6,7 +6,7 @@ class Cart {
   final List<Book> books;
 
   Cart({required this.books}) {
-    require(books).isNotEmpty();
+    require(books, label: 'books').hasLengthGreaterThan(0);
   }
 }
 

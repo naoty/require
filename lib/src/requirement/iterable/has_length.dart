@@ -1,9 +1,13 @@
 import 'package:require/src/subject.dart';
 
-extension HashLengthIterableRequirement<T> on Subject<Iterable<T>> {
+extension IterableHasLengthRequirement<T> on Subject<Iterable<T>> {
   Subject<Iterable<T>> hasLength(int length) {
     if (value.length != length) {
-      throw IterableLengthRequired(value: value, length: length);
+      throw IterableLengthRequired(
+        value: value,
+        length: length,
+        label: label,
+      );
     }
     return this;
   }
