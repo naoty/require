@@ -7,6 +7,7 @@ export 'src/requirement/num/is_less_than.dart';
 export 'src/requirement/iterable/contains.dart';
 export 'src/requirement/iterable/has_length_greater_than_or_equal_to.dart';
 export 'src/requirement/iterable/has_length_greater_than.dart';
+export 'src/requirement/iterable/has_length_less_than_or_equal_to.dart';
 export 'src/requirement/iterable/has_length_less_than.dart';
 export 'src/requirement/iterable/has_length.dart';
 export 'src/requirement/iterable/is_empty.dart';
