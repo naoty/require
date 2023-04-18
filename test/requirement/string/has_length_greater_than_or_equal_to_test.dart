@@ -7,14 +7,14 @@ void main() {
         'raises an exception when a string does not have a length greater than a value',
         () {
       expect(
-        () => require('naoty').hasLengthGreaterThanOrEqualTo(6),
+        () => require('naoty', label: 'value').hasLengthGreaterThanOrEqualTo(6),
         throwsA(isA<StringLengthGreaterThanOrEqualToRequired>()),
       );
     });
 
     test('does not raise an exception when a string has a length', () {
       expect(
-        () => require('naoty').hasLengthGreaterThanOrEqualTo(5),
+        () => require('naoty', label: 'value').hasLengthGreaterThanOrEqualTo(5),
         returnsNormally,
       );
     });
@@ -23,7 +23,7 @@ void main() {
         'does not raise an exception when a string has a length greater than a value',
         () {
       expect(
-        () => require('naoty').hasLengthGreaterThanOrEqualTo(4),
+        () => require('naoty', label: 'value').hasLengthGreaterThanOrEqualTo(4),
         returnsNormally,
       );
     });

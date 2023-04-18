@@ -11,18 +11,12 @@ extension NonEmptyStringRequirement on Subject<String> {
 
 class NotEmptyStringRequired implements Exception {
   final String _value;
-  final String? _label;
+  final String _label;
 
-  NotEmptyStringRequired({required String value, String? label})
+  NotEmptyStringRequired({required String value, required String label})
       : _value = value,
         _label = label;
 
   @override
-  String toString() {
-    if (_label != null) {
-      return "$_label('$_value') is required to be not empty";
-    } else {
-      return "'$_value' is required to be not empty";
-    }
-  }
+  String toString() => "$_label('$_value') is required to be not empty";
 }

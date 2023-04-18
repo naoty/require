@@ -5,13 +5,16 @@ void main() {
   group('isEmpty', () {
     test('raises an exception when a string is not empty', () {
       expect(
-        () => require('naoty').isEmpty(),
+        () => require('naoty', label: 'value').isEmpty(),
         throwsA(isA<EmptyStringRequired>()),
       );
     });
 
     test('does not raise an exception when a string is empty', () {
-      expect(() => require('').isEmpty(), returnsNormally);
+      expect(
+        () => require('', label: 'value').isEmpty(),
+        returnsNormally,
+      );
     });
   });
 }

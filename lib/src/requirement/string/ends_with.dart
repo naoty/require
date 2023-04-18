@@ -12,20 +12,16 @@ extension StringSuffixRequirement on Subject<String> {
 class StringSuffixRequired implements Exception {
   final String _value;
   final String _suffix;
-  final String? _label;
+  final String _label;
 
-  StringSuffixRequired(
-      {required String value, required String suffix, String? label})
-      : _value = value,
+  StringSuffixRequired({
+    required String value,
+    required String suffix,
+    required String label,
+  })  : _value = value,
         _suffix = suffix,
         _label = label;
 
   @override
-  String toString() {
-    if (_label != null) {
-      return "$_label('$_value') is required to end with '$_suffix'";
-    } else {
-      return "'$_value' is required to end with '$_suffix'";
-    }
-  }
+  String toString() => "$_label('$_value') is required to end with '$_suffix'";
 }

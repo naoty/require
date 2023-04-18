@@ -12,20 +12,16 @@ extension StringHasLengthRequirement on Subject<String> {
 class StringLengthRequired implements Exception {
   final String _value;
   final int _length;
-  final String? _label;
+  final String _label;
 
-  StringLengthRequired(
-      {required String value, required int length, String? label})
-      : _value = value,
+  StringLengthRequired({
+    required String value,
+    required int length,
+    required String label,
+  })  : _value = value,
         _length = length,
         _label = label;
 
   @override
-  String toString() {
-    if (_label != null) {
-      return "$_label('$_value') is required to have length $_length";
-    } else {
-      return "'$_value' is required to have length $_length";
-    }
-  }
+  String toString() => "$_label('$_value') is required to have length $_length";
 }

@@ -6,7 +6,7 @@ void main() {
     test('raises an exception when the value is not greater than the required',
         () {
       expect(
-        () => require(1).isGreaterThan(2),
+        () => require(1, label: 'value').isGreaterThan(2),
         throwsA(isA<NumGreaterThanRequired>()),
       );
     });
@@ -15,7 +15,7 @@ void main() {
         'does not raise an exception when the value is greater than the required',
         () {
       expect(
-        () => require(2).isGreaterThan(1),
+        () => require(2, label: 'value').isGreaterThan(1),
         returnsNormally,
       );
     });

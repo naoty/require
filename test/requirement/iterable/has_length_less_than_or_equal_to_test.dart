@@ -7,7 +7,7 @@ void main() {
         'raises an exception when an iterable does not have a length less than or equal to a value',
         () {
       expect(
-        () => require([1]).hasLengthLessThanOrEqualTo(0),
+        () => require([1], label: 'value').hasLengthLessThanOrEqualTo(0),
         throwsA(isA<IterableLessOrEqualLengthRequired>()),
       );
     });
@@ -16,7 +16,7 @@ void main() {
         'does not raise an exception when an iterable has a length less than or equal to a value',
         () {
       expect(
-        () => require([1]).hasLengthLessThanOrEqualTo(1),
+        () => require([1], label: 'value').hasLengthLessThanOrEqualTo(1),
         returnsNormally,
       );
     });

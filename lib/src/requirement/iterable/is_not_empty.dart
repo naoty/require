@@ -11,18 +11,12 @@ extension NonEmptyIterableRequirement<T> on Subject<Iterable<T>> {
 
 class NonEmptyIterableRequired implements Exception {
   final Iterable _value;
-  final String? _label;
+  final String _label;
 
-  NonEmptyIterableRequired({required Iterable value, String? label})
+  NonEmptyIterableRequired({required Iterable value, required String label})
       : _value = value,
         _label = label;
 
   @override
-  String toString() {
-    if (_label != null) {
-      return "$_label($_value) is required to be not empty";
-    } else {
-      return "$_value is required to be not empty";
-    }
-  }
+  String toString() => "$_label($_value) is required to be not empty";
 }

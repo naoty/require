@@ -3,7 +3,7 @@ import 'package:require/src/subject.dart';
 extension PredicateRequirement<T> on Subject<T> {
   Subject<T> predicate(bool Function(T) function, {required String message}) {
     if (!function(value)) {
-      throw PredicateRequired(message);
+      throw PredicateRequired(message: message, label: label);
     }
     return this;
   }
@@ -11,11 +11,12 @@ extension PredicateRequirement<T> on Subject<T> {
 
 class PredicateRequired implements Exception {
   final String _message;
+  final String _label;
 
-  PredicateRequired(this._message);
+  PredicateRequired({required String message, required String label})
+      : _message = message,
+        _label = label;
 
   @override
-  String toString() {
-    return _message;
-  }
+  String toString() => [_label, _message].join(' ');
 }

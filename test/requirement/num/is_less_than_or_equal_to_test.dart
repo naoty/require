@@ -7,7 +7,7 @@ void main() {
         'raises an exception when the value is not less than or equal to the required',
         () {
       expect(
-        () => require(2).isLessThanOrEqualTo(1),
+        () => require(2, label: 'value').isLessThanOrEqualTo(1),
         throwsA(isA<NumLessThanOrEqualToRequired>()),
       );
     });
@@ -15,7 +15,7 @@ void main() {
     test('does not raise an exception when the value is equal to the required',
         () {
       expect(
-        () => require(1).isLessThanOrEqualTo(1),
+        () => require(1, label: 'value').isLessThanOrEqualTo(1),
         returnsNormally,
       );
     });
@@ -23,7 +23,7 @@ void main() {
     test('does not raise an exception when the value is less than the required',
         () {
       expect(
-        () => require(1).isLessThanOrEqualTo(2),
+        () => require(1, label: 'value').isLessThanOrEqualTo(2),
         returnsNormally,
       );
     });

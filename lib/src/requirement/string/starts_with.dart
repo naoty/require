@@ -12,20 +12,17 @@ extension StringPrefixRequirement on Subject<String> {
 class StringPrefixRequired implements Exception {
   final String _value;
   final String _prefix;
-  final String? _label;
+  final String _label;
 
-  StringPrefixRequired(
-      {required String value, required String prefix, String? label})
-      : _value = value,
+  StringPrefixRequired({
+    required String value,
+    required String prefix,
+    required String label,
+  })  : _value = value,
         _prefix = prefix,
         _label = label;
 
   @override
-  String toString() {
-    if (_label != null) {
-      return "$_label('$_value') is required to start with '$_prefix'";
-    } else {
-      return "'$_value' is required to start with '$_prefix'";
-    }
-  }
+  String toString() =>
+      "$_label('$_value') is required to start with '$_prefix'";
 }

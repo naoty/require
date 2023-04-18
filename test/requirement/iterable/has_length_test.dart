@@ -6,7 +6,7 @@ void main() {
     test('raises an exception when the value does not have the required length',
         () {
       expect(
-        () => require([1]).hasLength(2),
+        () => require([1], label: 'value').hasLength(2),
         throwsA(isA<IterableLengthRequired>()),
       );
     });
@@ -14,7 +14,7 @@ void main() {
     test('does not raise an exception when the value has the required length',
         () {
       expect(
-        () => require([1]).hasLength(1),
+        () => require([1], label: 'value').hasLength(1),
         returnsNormally,
       );
     });

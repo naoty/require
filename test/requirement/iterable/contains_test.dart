@@ -7,7 +7,7 @@ void main() {
         'raises an exception when the value does not contain the required element',
         () {
       expect(
-        () => require([1]).contains(2),
+        () => require([1], label: 'value').contains(2),
         throwsA(isA<IterableContainingRequired>()),
       );
     });
@@ -16,7 +16,7 @@ void main() {
         'does not raise an exception when the value contains the required element',
         () {
       expect(
-        () => require([1]).contains(1),
+        () => require([1], label: 'value').contains(1),
         returnsNormally,
       );
     });

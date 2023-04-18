@@ -11,19 +11,15 @@ extension NullabilityRequirement<T> on Subject<T?> {
 
 class NullabilityRequired<T> implements Exception {
   final T? _value;
-  final String? _label;
+  final String _label;
 
-  NullabilityRequired({required T? value, String? label})
+  NullabilityRequired({required T? value, required String label})
       : _value = value,
         _label = label;
 
   @override
   String toString() {
     final valueString = _value is String ? "'$_value'" : _value;
-    if (_label != null) {
-      return "$_label($valueString) is required to be null";
-    } else {
-      return "$valueString is required to be null";
-    }
+    return "$_label($valueString) is required to be null";
   }
 }

@@ -5,13 +5,16 @@ void main() {
   group('isNull', () {
     test('throws an exception if the value is not null', () {
       expect(
-        () => Subject(value: 1).isNull(),
+        () => require(1, label: 'value').isNull(),
         throwsA(isA<NullabilityRequired>()),
       );
     });
 
     test('does not throw an exception if the value is null', () {
-      expect(() => Subject(value: null).isNull(), returnsNormally);
+      expect(
+        () => require(null, label: 'value').isNull(),
+        returnsNormally,
+      );
     });
   });
 }

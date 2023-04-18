@@ -16,22 +16,17 @@ extension NumGreaterThanRequirement on Subject<num> {
 class NumGreaterThanRequired implements Exception {
   final num _value;
   final num _required;
-  final String? _label;
+  final String _label;
 
   NumGreaterThanRequired({
     required num value,
     required num required,
-    String? label,
+    required String label,
   })  : _value = value,
         _required = required,
         _label = label;
 
   @override
-  String toString() {
-    if (_label != null) {
-      return "$_label($_value) is required to be greater than $_required";
-    } else {
-      return "$_value is required to be greater than $_required";
-    }
-  }
+  String toString() =>
+      "$_label($_value) is required to be greater than $_required";
 }

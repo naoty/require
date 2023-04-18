@@ -10,7 +10,7 @@ class UserName {
         .isNotEmpty()
         .hasLengthLessThan(20)
         .matches(r'^[a-zA-Z]+$');
-    requireIfNotNull(middle)
+    requireIfNotNull(middle, label: 'middle')
         ?.isNotEmpty()
         .hasLengthLessThan(20)
         .matches(r'^[a-zA-Z]+$');

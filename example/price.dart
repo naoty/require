@@ -4,7 +4,9 @@ class Price {
   final double _value;
 
   Price(double value) : _value = value {
-    require(_value).isGreaterThan(0).isLessThanOrEqualTo(100000);
+    require(_value, label: 'value')
+        .isGreaterThan(0)
+        .isLessThanOrEqualTo(100000);
   }
 
   @override

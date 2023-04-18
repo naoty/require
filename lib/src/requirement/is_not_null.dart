@@ -10,16 +10,10 @@ extension NonNullabilityRequirement<T> on Subject<T?> {
 }
 
 class NonNullabilityRequired implements Exception {
-  final String? _label;
+  final String _label;
 
-  NonNullabilityRequired({String? label}) : _label = label;
+  NonNullabilityRequired({required String label}) : _label = label;
 
   @override
-  String toString() {
-    if (_label != null) {
-      return "$_label(null) is required to be non-null";
-    } else {
-      return "null is required to be non-null";
-    }
-  }
+  String toString() => "$_label(null) is required to be non-null";
 }

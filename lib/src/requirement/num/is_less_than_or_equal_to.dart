@@ -16,22 +16,17 @@ extension NumLessThanOrEqualToRequirement on Subject<num> {
 class NumLessThanOrEqualToRequired implements Exception {
   final num _value;
   final num _required;
-  final String? _label;
+  final String _label;
 
   NumLessThanOrEqualToRequired({
     required num value,
     required num required,
-    String? label,
+    required String label,
   })  : _value = value,
         _required = required,
         _label = label;
 
   @override
-  String toString() {
-    if (_label != null) {
-      return "$_label($_value) is required to be less than or equal to $_required";
-    } else {
-      return "$_value is required to be less than or equal to $_required";
-    }
-  }
+  String toString() =>
+      "$_label($_value) is required to be less than or equal to $_required";
 }

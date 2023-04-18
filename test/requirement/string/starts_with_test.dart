@@ -5,14 +5,14 @@ void main() {
   group('startsWith', () {
     test('raises an exception when a string does not start with a prefix', () {
       expect(
-        () => require('naoty').startsWith('ty'),
+        () => require('naoty', label: 'value').startsWith('ty'),
         throwsA(isA<StringPrefixRequired>()),
       );
     });
 
     test('does not raise an exception when a string starts with a prefix', () {
       expect(
-        () => require('naoty').startsWith('nao'),
+        () => require('naoty', label: 'value').startsWith('nao'),
         returnsNormally,
       );
     });

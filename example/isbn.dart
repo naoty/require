@@ -4,7 +4,7 @@ class ISBN {
   final String _value;
 
   ISBN(String value) : _value = value {
-    require(_value)
+    require(_value, label: 'value')
         .startsWith('ISBN978-4-')
         .hasLength(22)
         .matches(r'^ISBN[0-9\-]+$');

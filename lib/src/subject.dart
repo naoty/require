@@ -1,6 +1,6 @@
 class Subject<T> {
   final T value;
-  final String? label;
+  final String label;
 
-  Subject({required this.value, this.label});
+  Subject({required this.value, required this.label});
 }

@@ -7,7 +7,7 @@ void main() {
         'raises an exception when a string does not have a length less than a value',
         () {
       expect(
-        () => require('naoty').hasLengthLessThan(5),
+        () => require('naoty', label: 'value').hasLengthLessThan(5),
         throwsA(isA<StringLengthLessThanRequired>()),
       );
     });
@@ -16,7 +16,7 @@ void main() {
         'does not raise an exception when a string has a length less than a value',
         () {
       expect(
-        () => require('naoty').hasLengthLessThan(6),
+        () => require('naoty', label: 'value').hasLengthLessThan(6),
         returnsNormally,
       );
     });

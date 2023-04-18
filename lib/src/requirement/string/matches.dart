@@ -19,20 +19,16 @@ extension StringMatchingRequirement on Subject<String> {
 class StringMatchRequired implements Exception {
   final String _value;
   final Pattern _pattern;
-  final String? _label;
+  final String _label;
 
-  StringMatchRequired(
-      {required String value, required Pattern pattern, String? label})
-      : _value = value,
+  StringMatchRequired({
+    required String value,
+    required Pattern pattern,
+    required String label,
+  })  : _value = value,
         _pattern = pattern,
         _label = label;
 
   @override
-  String toString() {
-    if (_label != null) {
-      return "$_label('$_value') is required to match '$_pattern'";
-    } else {
-      return "'$_value' is required to match '$_pattern'";
-    }
-  }
+  String toString() => "$_label('$_value') is required to match '$_pattern'";
 }
